@@ -1,0 +1,43 @@
+
+<div class="col-md-6 offset-md-3">
+    <div class="mb-4">
+      <div class="form-group">
+        <label for="pName">Product Name</label>
+        <input type="text" id="pName" #pName class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="pDescription">Product Description</label>
+        <textarea rows="4" id="pDescription" #pDescription class="form-control"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="pCatg">product catlog</label>
+        <select id="pCatg" #pCatg class="form-control">
+          <option value="product">Product</option>
+          <option value="catlog">Catlog</option>
+        </select>
+      </div>
+      <button class="btn btn-block btn-outline-info" (click)="OnAddData()">Add Product</button>
+    </div>
+    <div *ngIf="productsData.length>0">
+      <div class="card mb-3" *ngFor="let prod of productsData">
+        <div 
+        [ngClass]="{
+          'bg-info' : prod.pCatg.includes('product'),
+          'bg-secondary' : prod.pCatg.includes('catlog')
+        }"
+        class="card-header">
+             <h3 class="m-0 text-white">
+              {{prod.pName}}
+             </h3>
+        </div>
+        <div class="card-body">
+              <p class="mb-0">{{prod.pDescription}}</p>
+        </div>
+        <div class="card-footer d-flex justify-content-between">
+              <button class="btn btn-sm btn-outline-primary">Edit</button>
+              <button class="btn btn-sm btn-outline-danger">Remove</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
